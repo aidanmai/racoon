@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raccada</title>
     <style>
         html, body {
             margin: 0;
@@ -12,10 +11,10 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100%;
+            min-height: 100%;
             background-color: #000;
             font-family: "Courier New", monospace;
-            overflow: hidden;
+            overflow: auto;
             color: white;
         }
 
@@ -93,6 +92,30 @@
 
     </style>
 </head>
+<div style="position:absolute; color: black; top:0; left:0; text-align:left;">
+I journeyed, long in walking, far beyond the place of stopping <br>
+Where there was no more returning to the people I had known. <br>
+I saw the world forgotten, where the grass gives up on growing <br>
+And I knew that I would never make another journey home. <br>
+</div>
+<div style="position:absolute; color: black; top:0; right:0; text-align:right;">
+Upon that fleshy plain, below the final rock outcropping <br>
+Stretched the vast and empty desert of the hungry, bleeding thing <br>
+Encompassing the earth to the horizon, all-consuming, <br>
+Crying in a thousand voices to its desolate god-king. <br>
+</div>
+<div style="position:absolute; color: black; bottom:0; left:0; text-align:left;">
+And the music of its crying, never dead, ever dying, <br>
+Sent me running in a madness I can scarce compare to fear, <br>
+Not to safety, but to silence - unto my own unmaking. <br>
+And yet now, upon awaking, once again the song I hear. <br>
+</div>
+<div style="position:absolute; color: black; bottom:0; right:0; text-align:right;">
+I long to taste the fruit of earth, I long for water quenching <br>
+Of my thirst, unending, nothing that remains can satisfy. <br>
+For my voice has joined the chorus ever more, ever mourning. <br>
+Ever singing, ever hungry. Ever dying, never die. <br>
+</div>
 <body>
     <div id="text"></div>
     <img src="raccada.png" alt="Raccada Logo" class="logo">
@@ -134,7 +157,7 @@
                 el.style.animationDelay = `${index * 0.5}s`;
             });
 
-            setTimeout(function() {
+            setTimeout(() => {
                 const text = document.getElementById("text");
                 const phrase = "NOW I SEE THE LIGHT";
                 let index = 0;
@@ -148,7 +171,7 @@
                     }
                 }
                 const interval = setInterval(displayText, 50);
-            }, 1000);
+            }, 500);
         };
     </script>
 </body>
