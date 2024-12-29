@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raccada</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            font-family: "Courier New", monospace;
+            overflow: hidden;
+            color: white;
+        }
+
+        .logo {
+            width: 300px;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: fadeInScale 1s forwards 0.5s;
+        }
+
+        #text {
+            height: 20px;
+        }
+
+        input[type="password"], button {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards 1.5s;
+            color: white;
+        }
+
+        input[type="password"] {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #202020;
+            background: none;
+            outline: none;
+            color: white;
+            font-family: "Courier New", monospace;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            font-size: 16px;
+            color: white;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .shake {
+            animation: shake 0.3s !important;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="text"></div>
+    <img src="raccada.png" alt="Raccada Logo" class="logo">
+    <div>
+        <input type="password" id="password" placeholder="Enter password" onkeypress="handleKeyPress(event)">
+        <button onclick="checkPassword()">&rarr;</button>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const passwordInput = document.getElementById('password');
+            const correctPassword = "secretKey"; // Replace with your actual password
+
+            if (passwordInput.value === correctPassword) {
+                alert('Access Granted'); // Replace with desired action
+            } else {
+                passwordInput.value = "";
+                passwordInput.style.opacity = 100;
+                passwordInput.style.transform = "none";
+                passwordInput.style.animation = "none";
+                passwordInput.classList.add('shake');
+                // Ensure the animation restarts properly
+                setTimeout(() => {
+                    passwordInput.classList.remove('shake');
+                    void passwordInput.offsetWidth; // Trigger reflow to restart animation
+                }, 300);
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+        }
+
+        window.onload = () => {
+            const elements = document.querySelectorAll('.logo, input, button');
+            elements.forEach((el, index) => {
+                el.style.animationDelay = `${index * 0.5}s`;
+            });
+
+            setTimeout(() => {
+                const text = document.getElementById("text");
+                const phrase = "NOW I SEE THE LIGHT";
+                let index = 0;
+
+                function displayText() {
+                    if (index < phrase.length) {
+                        text.textContent += phrase[index];
+                        index++;
+                    } else {
+                        clearInterval(interval);
+                    }
+                }
+                const interval = setInterval(displayText, 50);
+            }, 500);
+        };
+    </script>
+</body>
+</html>
