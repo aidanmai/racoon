@@ -104,20 +104,20 @@
     <script>
         function checkPassword() {
             const passwordInput = document.getElementById('password');
-            const correctPassword = "secretKey"; // Replace with your actual password
+            const correctPassword = "secretKey";
 
             if (passwordInput.value === correctPassword) {
-                alert('Access Granted'); // Replace with desired action
+                alert('Access Granted');
             } else {
                 passwordInput.value = "";
                 passwordInput.style.opacity = 100;
                 passwordInput.style.transform = "none";
                 passwordInput.style.animation = "none";
                 passwordInput.classList.add('shake');
-                // Ensure the animation restarts properly
+
                 setTimeout(() => {
                     passwordInput.classList.remove('shake');
-                    void passwordInput.offsetWidth; // Trigger reflow to restart animation
+                    void passwordInput.offsetWidth;
                 }, 300);
             }
         }
@@ -134,7 +134,7 @@
                 el.style.animationDelay = `${index * 0.5}s`;
             });
 
-            setTimeout(() => {
+            setTimeout(function() {
                 const text = document.getElementById("text");
                 const phrase = "NOW I SEE THE LIGHT";
                 let index = 0;
@@ -148,7 +148,7 @@
                     }
                 }
                 const interval = setInterval(displayText, 50);
-            }, 500);
+            }, 1000);
         };
     </script>
 </body>
